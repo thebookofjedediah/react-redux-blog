@@ -22,8 +22,8 @@ function App() {
         <Paper className={classes.root} elevation={3} mt={5}>
           <Typography variant="h2" component="h1">Microblog</Typography>
           <Typography variant="subtitle1" component="p">Get in the Springboard of blogging!</Typography>
-          <Button className={classes.links} color="primary">Blog</Button>
-          <Button className={classes.links} color="primary">Add a Post</Button>
+          <Button href="/blog" className={classes.links} color="primary">Blog</Button>
+          <Button href="/new" className={classes.links} color="primary">Add a Post</Button>
         </Paper>
         <Routes />
       </Container>
