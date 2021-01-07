@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Paper, Typography, Button } from '@material-ui/core'
+import { Container, Paper, Typography, Button } from '@material-ui/core';
 import Routes from './Routes';
 
 const useStyles = makeStyles({
@@ -15,7 +16,9 @@ const useStyles = makeStyles({
 })
 
 function App() {
+
   const classes = useStyles();
+
   return (
     <div className="App">
       <Container maxWidth="md">
