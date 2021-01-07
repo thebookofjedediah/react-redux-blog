@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Typography, FormControl, Input, InputLabel } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddPost = () => {
+
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const INITIAL_FORM_STATE = {
         title: '',
@@ -21,7 +27,12 @@ const AddPost = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(formData)
+        dispatch({
+            type: 'ADD_POST',
+            post: {...formData},
+            id: uuidv4()
+        })
+        history.push('/')
     }
 
     return (

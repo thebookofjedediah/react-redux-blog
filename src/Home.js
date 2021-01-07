@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core'
+import TitleList from './TitleList';
 
 const Home = () => {
 
@@ -8,6 +9,7 @@ const Home = () => {
           <Typography variant="h3">
               Blog List
           </Typography>
+          <TitleList />
         </>
     )
 }
