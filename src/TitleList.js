@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { fetchPosts } from './reducers/actions';
 
 const useStyles = makeStyles({
     root: {
@@ -19,15 +20,33 @@ const useStyles = makeStyles({
 
 export default function TitleList(){
     const classes = useStyles();
-    const { posts } = useSelector(store => store)
-    const postsArr = [];
-    for (const [key, value] of Object.entries(posts)) {
-        postsArr.push({id: key, ...value})
+
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { posts } = useSelector(store => store, shallowEqual)
+
+  useEffect(function() {
+    async function getPosts(){
+      await dispatch(fetchPosts());
+      setIsLoading(false);
     }
+
+    if (isLoading) {
+      getPosts();
+    }
+  }, [dispatch, isLoading])
+
+  if (isLoading) {
+    return (
+      <div>
+        Loading...
+      </div>
+    )
+  }
 
   return (
         <>
-        {postsArr.map(post => (
+        {posts.map(post => (
         <Card className={classes.root}>
             <CardContent>
                 <Typography variant="h5" component="h2">

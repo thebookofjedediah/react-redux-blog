@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Typography, FormControl, Input, InputLabel } from '@material-ui/core';
+import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
