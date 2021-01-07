@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Paper, Typography, Button } from '@material-ui/core';
 import Routes from './Routes';
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
@@ -25,8 +25,8 @@ function App() {
         <Paper className={classes.root} elevation={3} mt={5}>
           <Typography variant="h2" component="h1">Microblog</Typography>
           <Typography variant="subtitle1" component="p">Get in the Springboard of blogging!</Typography>
-          <Button href="/blog" className={classes.links} color="primary">Blog</Button>
-          <Button href="/new" className={classes.links} color="primary">Add a Post</Button>
+          <Button component={Link} to="/blog" className={classes.links} color="primary">Blog</Button>
+          <Button component={Link} to="/new" className={classes.links} color="primary">Add a Post</Button>
         </Paper>
         <Routes />
       </Container>

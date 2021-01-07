@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './Home'
 import Blog from './Blog'
 import AddPost from './AddPost'
+import Post from './Post'
 
 import { Switch, Route } from "react-router-dom";
 
@@ -13,6 +14,9 @@ const Routes = () => {
             </Route>
             <Route exact path="/blog">
                 <Blog />
+            </Route>
+            <Route path="/:postId" exact>
+                <Post />
             </Route>
             <Route exact path="/">
                 <Home />
