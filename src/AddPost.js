@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-const AddPost = () => {
+const AddPost = ({postEdit, postEditId}) => {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -15,7 +15,7 @@ const AddPost = () => {
         description: '',
         body: ''
     };
-    const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+    const [formData, setFormData] = useState(postEdit ? {title: postEdit.title, description: postEdit.description, body: postEdit.body} : INITIAL_FORM_STATE);
     
     const changeHandler = (e) => {
         const {name, value} = e.target;
@@ -27,19 +27,24 @@ const AddPost = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch({
-            type: 'ADD_POST',
-            post: {...formData},
-            id: uuidv4()
-        })
+        if (postEdit) {
+            dispatch({
+                type: 'EDIT_POST',
+                post: {...formData},
+                id: postEditId
+            })
+        } else {
+            dispatch({
+                type: 'ADD_POST',
+                post: {...formData},
+                id: uuidv4()
+            })
+        }
         history.push('/')
     }
 
     return (
         <>
-            <Typography variant="h3">
-                Add a Post
-            </Typography>
             <form onSubmit={submitHandler}>
                 <FormControl fullWidth>
                     <InputLabel htmlFor="title">Title</InputLabel>
